@@ -24,7 +24,7 @@ qui malgré son degré de maturité supérieure semble à l'abandon aussi.
 # config/omniauth.rb
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider(
-    :pro_connect,
+    :proconnect,
     {
       client_id: ENV.fetch("YOUR_APP_PC_CLIENT_ID"),
       client_secret: ENV.fetch("YOUR_APP_PC_CLIENT_SECRET"),

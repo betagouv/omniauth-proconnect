@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-proconnect (0.1.2)
+    omniauth-proconnect (0.1.0)
       faraday (~> 2)
       json-jwt (~> 1)
       omniauth
