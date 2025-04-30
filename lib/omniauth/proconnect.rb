@@ -32,7 +32,7 @@ module Omniauth
 
       exchange_authorization_code!(request.params["code"])
         .then { |response| store_tokens!(response) }
-        .then { |response| get_userinfo!(response) }
+        .then { get_userinfo! }
         .then { |response| @userinfo = JSON::JWT.decode(response.body, :skip_verification) }
         .then { super }
     end
