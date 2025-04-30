@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "omniauth"
+
 require_relative "proconnect/version"
 
 module Omniauth
