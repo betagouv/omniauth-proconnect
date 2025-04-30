@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require "omniauth"
 require "faraday"
+require "omniauth"
+require "json/jwt"
 
 require_relative "proconnect/version"
 
