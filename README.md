@@ -17,6 +17,13 @@ qui malgré son degré de maturité supérieure semble à l'abandon aussi.
 
 ## Utilisation
 
+Une fois que vous avez créé votre application sur [l'espace
+partenaires de
+ProConnect](https://partenaires.proconnect.gouv.fr/apps) et identifié
+vos endpoints grâce à leur [documentation
+technique](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/implementation_technique))
+:
+
 1. installer la gem `bundle add omniauth-proconnect` ;
 2. configurer une nouvelle stratégie pour OmniAuth :
 
