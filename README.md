@@ -21,7 +21,7 @@ Une fois que vous avez créé votre application sur [l'espace
 partenaires de
 ProConnect](https://partenaires.proconnect.gouv.fr/apps) et identifié
 vos endpoints grâce à leur [documentation
-technique](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/implementation_technique))
+technique](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/implementation_technique)
 :
 
 1. installer la gem `bundle add omniauth-proconnect` ;
@@ -57,6 +57,63 @@ end
 
 ```ruby
 redirect_to "/auth/proconnect/logout"
+```
+
+## Informations retournées
+
+Les [informations retournées par
+ProConnect](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/scope-claims)
+sont mises à diposition dans le hash OmniAuth
+(`request.env["omniauth.auth"]`) :
+
+* la partie `info` contient tout ce qui peut être standardisé [selon
+  le Auth Hash Schema d'Omniauth](https://github.com/omniauth/omniauth/wiki/Auth-Hash-Schema)
+* le reste/l'intégralité est disponible dans `extra`.
+
+Exemple :
+
+```json
+{
+  "provider": "proconnect",
+  "uid": "e7a41249-123d-46b7-b362-5f00d3166ea1",
+  "info": {
+    "email": "test@gouv.fr",
+    "first_name": null,
+    "last_name": null,
+    "name": "",
+    "phone": null,
+    "provider": "proconnect",
+    "uid": "e7a41249-123d-46b7-b362-5f00d3166ea1"
+  },
+  "credentials": {},
+  "extra": {
+    "raw_info": {
+      "sub": "e7a41249-123d-46b7-b362-5f00d3166ea1",
+      "email": "test@gouv.fr",
+      "siret": "13002526500013",
+      "aud": "f90c1231117ec6f731af9f93a07c54ff372130c17a3bbad43488699865d85c64",
+      "exp": 1748010049,
+      "iat": 1748009989,
+      "iss": "https://issuer-oidc.gouv.fr/api/v42"
+    }
+  }
+}
+```
+
+```ruby
+class SessionsController < ApplicationController
+  def create
+    data = request.env["omniauth.auth"]
+
+    email = data.info.email
+    siret = data.extra.raw_info.siret
+
+    # or, if you're feeling fancy
+    data => { info: { email: }, extra: { raw_info: { siret: } } }
+
+    # [...]
+  end
+end
 ```
 
 ## Contribution

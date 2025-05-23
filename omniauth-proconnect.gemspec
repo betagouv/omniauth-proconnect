@@ -9,7 +9,10 @@ Gem::Specification.new do |spec|
   spec.email = ["stephane.maniaci@gmail.com"]
 
   spec.summary = "An OmniAuth strategy for ProConnect"
-  spec.description = "An OmniAuth strategy for ProConnect, an official OIDC solution for French professionnals to login."
+  spec.description = <<~DESC
+    An OmniAuth strategy for ProConnect, an official
+    OIDC solution for French professionnals to login.
+  DESC
   spec.homepage = "https://github.com/betagouv/omniauth-proconnect"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"

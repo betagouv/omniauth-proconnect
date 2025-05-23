@@ -5,7 +5,5 @@ RSpec.describe Omniauth::Proconnect do
     expect(Omniauth::Proconnect::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+  # FIXME: study other strategies to figure out useful tests
 end

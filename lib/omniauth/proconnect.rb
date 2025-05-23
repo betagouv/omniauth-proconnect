@@ -47,14 +47,25 @@ module OmniAuth
         end
       end
 
-      def uid
-        session["omniauth.pc.id_token"]["sub"]
+      # userinfo-operating DSL from OmniAuth
+      uid do
+        @userinfo["sub"]
       end
 
-      def info
+      info do
         {
-          email: @userinfo["email"]
+          email: @userinfo["email"],
+          first_name: @userinfo["given_name"],
+          last_name: @userinfo["usual_name"],
+          name: [@userinfo["given_name"], @userinfo["usual_name"]].compact.join(" "),
+          phone: @userinfo["phone_number"],
+          provider: "proconnect",
+          uid: @userinfo["sub"]
         }
+      end
+
+      extra do
+        { raw_info: @userinfo }
       end
 
       private
@@ -71,9 +82,7 @@ module OmniAuth
       end
 
       def discover_endpoint!
-        connection
-          .get(".well-known/openid-configuration")
-          .body
+        connection.get(".well-known/openid-configuration").body
       end
 
       def authorization_uri
@@ -147,9 +156,11 @@ module OmniAuth
       end
 
       def verify_state!(other_state)
+        # rubocop:disable Style/GuardClause
         if other_state != current_state
           raise "a request came back with a different 'state' parameter than what we had last stored."
         end
+        # rubocop:enable Style/GuardClause
       end
     end
   end
