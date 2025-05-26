@@ -35,16 +35,18 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     {
       client_id: ENV.fetch("YOUR_APP_PC_CLIENT_ID"),
       client_secret: ENV.fetch("YOUR_APP_PC_CLIENT_SECRET"),
-      proconnect_domain: ENV.fetch("YOUR_APP_PC_HOST"),
-      redirect_uri: ENV.fetch("YOUR_APP_PC_REDIRECT_URI"),
-      post_logout_redirect_uri: ENV.fetch("YOUR_APP_PC_POST_LOGOUT_REDIRECT_URI"),
-      scope: ENV.fetch("YOUR_APP_PC_SCOPES")
+      proconnect_domain: ENV.fetch("YOUR_APP_PC_HOST"), # integration ou production
+      redirect_uri: ENV.fetch("YOUR_APP_PC_REDIRECT_URI"), # Type "https://DOMAIN/auth/proconnect/callback"
+      post_logout_redirect_uri: ENV.fetch("YOUR_APP_PC_POST_LOGOUT_REDIRECT_URI"), # Optionnel
+      scope: ENV.fetch("YOUR_APP_PC_SCOPES") # "openid" à minima "openid email" voir https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/donnees_fournies
     }
   )
 end
 ```
 
 3. envoyez votre utilisateur sur la stratégie :
+
+Voir design [DSFR](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/bouton_proconnect)
 
 ```erb
 <%= button_to "Se connecter via ProConnect", "/auth/proconnect", method: :post, remote: false, data: { turbo: false } %>
