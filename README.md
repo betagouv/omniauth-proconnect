@@ -66,9 +66,9 @@ ProConnect](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/scop
 sont mises à diposition dans le hash OmniAuth
 (`request.env["omniauth.auth"]`) :
 
-* la partie `info` contient tout ce qui peut être standardisé [selon
+- la partie `info` contient tout ce qui peut être standardisé [selon
   le Auth Hash Schema d'Omniauth](https://github.com/omniauth/omniauth/wiki/Auth-Hash-Schema)
-* le reste/l'intégralité est disponible dans `extra`.
+- le reste/l'intégralité est disponible dans `extra`.
 
 Exemple :
 
