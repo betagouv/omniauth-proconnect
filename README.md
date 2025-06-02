@@ -15,6 +15,11 @@ générique
 [`omniauth_openid_connect`](https://github.com/omniauth/omniauth_openid_connect)
 qui malgré son degré de maturité supérieure semble à l'abandon aussi.
 
+La suite du README décrit brièvement la configuration de la librairie. Si vous
+n'êtes pas encore familier avec OIDC et OmniAuth, un [guide complet de
+configuration d'omniauth-proconnect est aussi disponible sur le
+wiki](https://github.com/betagouv/omniauth-proconnect/wiki/Guide-de-connexion).
+
 ## Utilisation
 
 Une fois que vous avez créé votre application sur [l'espace
@@ -44,7 +49,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 ```
 
-3. envoyez votre utilisateur sur la stratégie :
+**⚠️ NOTE :** [La valeur de `PROCONNECT_DOMAIN` doit finir par
+`/api/v2`](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/implementation_technique#12-valeur-de-proconnect_domain),
+ce n'est pas seulement l'hôte. C.f https://github.com/betagouv/omniauth-proconnect/issues/5
+
+3.  envoyez votre utilisateur sur la stratégie :
 
 ```erb
 <%= button_to "Se connecter via ProConnect", "/auth/proconnect", method: :post, remote: false, data: { turbo: false } %>
@@ -66,9 +75,9 @@ ProConnect](https://partenaires.proconnect.gouv.fr/docs/fournisseur-service/scop
 sont mises à diposition dans le hash OmniAuth
 (`request.env["omniauth.auth"]`) :
 
-* la partie `info` contient tout ce qui peut être standardisé [selon
+- la partie `info` contient tout ce qui peut être standardisé [selon
   le Auth Hash Schema d'Omniauth](https://github.com/omniauth/omniauth/wiki/Auth-Hash-Schema)
-* le reste/l'intégralité est disponible dans `extra`.
+- le reste/l'intégralité est disponible dans `extra`.
 
 Exemple :
 
