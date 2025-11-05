@@ -72,6 +72,8 @@ module OmniAuth
 
       def connection
         @connection ||= Faraday.new(url: options[:proconnect_domain]) do |c|
+          c.request :url_encoded
+
           c.response :json
           c.response :raise_error
         end
