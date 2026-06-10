@@ -129,7 +129,7 @@ GEM
     uri (1.0.3)
 
 PLATFORMS
-  arm64-darwin-23
+  arm64-darwin
   ruby
 
 DEPENDENCIES
@@ -140,4 +140,4 @@ DEPENDENCIES
   rubocop (~> 1.21)
 
 BUNDLED WITH
-   2.6.6
+  4.0.6
