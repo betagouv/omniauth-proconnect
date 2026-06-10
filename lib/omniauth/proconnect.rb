@@ -21,10 +21,6 @@ module OmniAuth
       option :post_logout_redirect_uri
       option :scope, "openid email given_name usual_name"
 
-      def setup_phase
-        discover_endpoint!
-      end
-
       def request_phase
         redirect(authorization_uri)
       end
