@@ -101,7 +101,8 @@ module OmniAuth
           endpoint.query = URI.encode_www_form(
             id_token_hint: session["omniauth.pc.id_token"],
             state: current_state,
-            post_logout_redirect_uri: options[:post_logout_redirect_uri]
+            post_logout_redirect_uri: options[:post_logout_redirect_uri],
+            client_id: options[:client_id]
           )
         end
       end
